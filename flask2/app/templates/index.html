@@ -1,12 +1,12 @@
 <html>
     <head>
-        <title>{{name}}</title>
+        <title>{{passed_keyword}}</title>
     </head>
     <body>
-        {% if name == "sensouji" %}
-        <h1>スペシャル{{name}}寺</h1>
-        {% elif name %}
-        <h1>{{name}}寺</h1>
+        {% if passed_keyword == "sensouji" %}
+        <h1>スペシャル{{passed_keyword}}寺</h1>
+        {% elif passed_keyword %}
+        <h1>{{passed_keyword}}寺</h1>
         {% else %}
         <h1>ただの寺</h1>
         {% endif %}
