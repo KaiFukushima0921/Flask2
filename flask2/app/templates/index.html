@@ -1,8 +1,18 @@
 <html>
     <head>
-
+        <title>{{name}}</title>
     </head>
     <body>
-        <h1>Webアプリ初心者のFlaskチュートリアル</h1>
+        {% if name == "sensouji" %}
+        <h1>スペシャル{{name}}寺</h1>
+        {% elif name %}
+        <h1>{{name}}寺</h1>
+        {% else %}
+        <h1>ただの寺</h1>
+        {% endif %}
+        <img src="/static/images/sensouji_temple.webp" alt="浅草寺">
+        {% for word in okyo %}
+        <p>{{word}}</p>
+        {% endfor %}
     </body>
 </html>
