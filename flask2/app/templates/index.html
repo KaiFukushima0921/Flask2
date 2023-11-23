@@ -11,8 +11,8 @@
         <h1>ただの寺</h1>
         {% endif %}
         <img src="/static/images/sensouji_temple.webp" alt="浅草寺">
-        {% for word in okyo %}
-        <p>{{word}}</p>
+        {% for key, value in okyo.items() %}
+        <p>{{key}} -> {{value}}</p>
         {% endfor %}
     </body>
 </html>
