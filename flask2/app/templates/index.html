@@ -10,6 +10,10 @@
         {% else %}
         <h1>ただの寺</h1>
         {% endif %}
+        <form action="/hello" method="POST">
+            <input type="text" name="name" placeholder="Enter name">
+            <input type="submit" value="Submit">
+        </form>
         <img src="/static/images/sensouji_temple.webp" alt="浅草寺">
         {% for key, value in okyo.items() %}
         <p>{{key}} -> {{value}}</p>
