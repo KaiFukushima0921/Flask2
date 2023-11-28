@@ -15,10 +15,30 @@
             <input type="submit" value="Submit">
         </form>
         <img src="/static/images/sensouji_temple.webp" alt="浅草寺">
-        {% for onegai in all_onegai %}
+        <form action="/add" method="post">
+            <input type="text" name="name" placeholder="title">
+            <input type="text" name="body" placeholder="body">
+            <input type="submit" value="Add">
+        </form>
+        <form action="/update" method="post">
+            <input type="text" name="name" placeholder="title">
+            <input type="text" name="body" placeholder="body">
+            <input type="submit" value="Update">
+        </form>
+        <form action="/done" method="post">
+            <input type="submit" value="done">
+        </form>
+        <form action="/delete" method="post" id="delete">
+            <input type="submit" value="Delete Selected All Onegai">
+        </form>
+            {% for onegai in all_onegai %}
             {% if after == "2023-11-23" %}
-                <p>{{onegai.title}}: {{onegai.body}} ({{onegai.date}})</p>
+                <div>
+                    <input type="radio" name="update" value={{onegai.id}}>
+                    <input type="checkbox" name="delete" form="delete" value="{{onegai.id}}">
+                    {{onegai.name}} : {{onegai.body}} ({{onegai.date}})
+                </div>
             {% endif %}
-        {% endfor %}
+            {% endfor %}
     </body>
 </html>
