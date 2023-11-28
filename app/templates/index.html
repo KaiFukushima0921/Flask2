@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>{{passed_keyword}}</title>
+    </head>
+    <body>
+        {% if passed_keyword == "sensouji" %}
+        <h1>スペシャル{{passed_keyword}}寺</h1>
+        {% elif passed_keyword %}
+        <h1>{{passed_keyword}}寺</h1>
+        {% else %}
+        <h1>ただの寺</h1>
+        {% endif %}
+        <form action="/hello" method="POST">
+            <input type="text" name="name" placeholder="Enter name">
+            <input type="submit" value="Submit">
+        </form>
+        <img src="/static/images/sensouji_temple.webp" alt="浅草寺">
+        {% for onegai in all_onegai %}
+            {% if after == "2023-11-23" %}
+                <p>{{onegai.title}}: {{onegai.body}} ({{onegai.date}})</p>
+            {% endif %}
+        {% endfor %}
+    </body>
+</html>
