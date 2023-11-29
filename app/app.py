@@ -11,8 +11,16 @@ app = Flask(__name__)
 def index():
     name = request.args.get("keyword")
     after = request.args.get("after")
-    all_onegai = OnegaiContent.query.all()
-    return render_template("index.html",passed_keyword=name,after=after,all_onegai=all_onegai)
+    if after:
+        all_onegai = OnegaiContent.query.filter(OnegaiContent.date>=after).all()
+    else:
+        all_onegai = OnegaiContent.query.all()
+    return render_template("index.html",passed_keyword=name,all_onegai=all_onegai)
+
+"""
+SQL文で書いた場合
+select * from task where date >= after 
+"""
 
 
 @app.route("/hello",methods=["POST"])

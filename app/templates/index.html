@@ -32,13 +32,11 @@
             <input type="submit" value="Delete Selected All Onegai">
         </form>
             {% for onegai in all_onegai %}
-            {% if after == "2023-11-23" %}
                 <div>
                     <input type="radio" name="update" value={{onegai.id}}>
                     <input type="checkbox" name="delete" form="delete" value="{{onegai.id}}">
                     {{onegai.name}} : {{onegai.body}} ({{onegai.date}})
                 </div>
-            {% endif %}
             {% endfor %}
     </body>
 </html>
