@@ -49,14 +49,24 @@ def update():
     return index()
 
 
-@app.route("/done",methods=["post"])
-def done():
-    name = request.form["name"]
-    body = request.form["body"]
-    content = OnegaiContent(name,body,datetime.now())
-    db_session.add(content)
+@app.route("/delete",methods=["post"])
+def delete():
+    id_list = request.form.getlist("delete")
+    for id in id_list:
+        content = OnegaiContent.query.filter_by(id=id).first()
+        db_session.delete(content)
     db_session.commit()
-    return index
+    return index()
+
+
+# @app.route("/done",methods=["post"])
+# def done():
+#     name = request.form["name"]
+#     body = request.form["body"]
+#     content = OnegaiContent(name,body,datetime.now())
+#     db_session.add(content)
+#     db_session.commit()
+#     return index
 
 
     

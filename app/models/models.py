@@ -9,14 +9,14 @@ class OnegaiContent(Base):
     name = Column(String(128), unique=True)
     body = Column(Text)
     date = Column(DateTime, default=datetime.now())
-    done = Column(Text, default='default_value')
+    # done = Column(Text, default='default_value')
 
 
-    def __init__(self, name=None, body=None, date=None, done=None):
+    def __init__(self, name=None, body=None, date=None):
         self.name = name
         self.body = body
         self.date = date
-        self.done = done
+        # self.done = done
 
 
     def __repr__(self):
