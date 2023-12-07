@@ -59,6 +59,17 @@ def delete():
     return index()
 
 
+@app.route("/done",methods=["post"])
+def done():
+    done_list = request.form.getlist("done")
+    for done in done_list:
+        content = OnegaiContent.query.filter_by(id=id).first()
+        if content:
+            content.done = True
+            db_session.commit()
+    return index()
+
+
 # @app.route("/done",methods=["post"])
 # def done():
 #     name = request.form["name"]

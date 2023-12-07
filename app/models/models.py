@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime
+from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean
 from .database import Base
 from datetime import datetime
 
@@ -9,14 +9,14 @@ class OnegaiContent(Base):
     name = Column(String(128), unique=True)
     body = Column(Text)
     date = Column(DateTime, default=datetime.now())
-    # done = Column(Text, default='default_value')
+    done = Column(Boolean, default=False)
 
 
-    def __init__(self, name=None, body=None, date=None):
+    def __init__(self, name=None, body=None, date=None, done=None):
         self.name = name
         self.body = body
         self.date = date
-        # self.done = done
+        self.done = done
 
 
     def __repr__(self):
