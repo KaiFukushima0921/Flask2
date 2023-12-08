@@ -23,6 +23,18 @@ select * from task where date >= after
 """
 
 
+@app.route("/")
+@app.route("/index")
+def index2():
+    name = request.args.get("keyword")
+    done = request.args.get("done")
+    if done:
+        all_onegai = OnegaiContent.query.filter(OnegaiContent.done==1).all()
+    else:
+        all_onegai = OnegaiContent.query.all()
+    return render_template("index.html",passed_keyword=name,all_onegai=all_onegai)
+
+
 @app.route("/hello",methods=["POST"])
 def post():
     name = request.form["name"]
@@ -63,10 +75,10 @@ def delete():
 def done():
     done_list = request.form.getlist("done")
     for done in done_list:
-        content = OnegaiContent.query.filter_by(id=id).first()
-        if content:
-            content.done = True
-            db_session.commit()
+        content = OnegaiContent.query.filter_by(id=done).first()
+        content.done = True
+        # 67行目は「done = 1」でも実行できた
+        db_session.commit()
     return index()
 
 
