@@ -11,8 +11,11 @@ app = Flask(__name__)
 def index():
     name = request.args.get("keyword")
     after = request.args.get("after")
+    done = request.args.get("done")
     if after:
         all_onegai = OnegaiContent.query.filter(OnegaiContent.date>=after).all()
+    elif done:
+        all_onegai = OnegaiContent.query.filter(OnegaiContent.done==1).all()
     else:
         all_onegai = OnegaiContent.query.all()
     return render_template("index.html",passed_keyword=name,all_onegai=all_onegai)
@@ -23,16 +26,20 @@ select * from task where date >= after
 """
 
 
-@app.route("/")
-@app.route("/index")
-def index2():
-    name = request.args.get("keyword")
-    done = request.args.get("done")
-    if done:
-        all_onegai = OnegaiContent.query.filter(OnegaiContent.done==1).all()
-    else:
-        all_onegai = OnegaiContent.query.all()
-    return render_template("index.html",passed_keyword=name,all_onegai=all_onegai)
+""""
+なぜ下記ではdoneカラムが1の値のみを表示出来ないのか？
+"""
+
+# @app.route("/")
+# @app.route("/index")
+# def index2():
+#     name = request.args.get("keyword")
+#     done = request.args.get("done")
+#     if done:
+#         all_onegai = OnegaiContent.query.filter(OnegaiContent.done==1).all()
+#     else:
+#         all_onegai = OnegaiContent.query.all()
+#     return render_template("index.html",passed_keyword=name,all_onegai=all_onegai)
 
 
 @app.route("/hello",methods=["POST"])
