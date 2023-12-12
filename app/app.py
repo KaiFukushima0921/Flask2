@@ -15,8 +15,8 @@ def index():
     name = request.args.get("keyword")
     after = request.args.get("after")
     done = request.args.get("done")
-    if "user_name" in session:
-        name = session["user_name"]
+    if "email" in session:
+        name = session["email"]
         all_onegai = OnegaiContent.query.all()
         return render_template("index.html",passed_keyword=name,all_onegai=all_onegai)
     elif after:
@@ -90,7 +90,7 @@ def done():
 
 @app.route("/login", methods=["post"])
 def logion():
-    email = request.form["user_name"]
+    email = request.form["email"]
     user = User.query.filter_by(user_name=email).first()
     if user:
         password = request.form["password"]
@@ -112,7 +112,7 @@ def logout():
 
 @app.route("/resister",methods=["post"])
 def resister():
-    email = request.form["user_name"]
+    email = request.form["email"]
     user = User.query.filter_by(user_name=email).first()
     if user:
         return redirect(url_for("newcomer", status="exist_user"))
