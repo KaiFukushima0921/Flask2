@@ -96,7 +96,7 @@ def logion():
         password = request.form["password"]
         hashed_password = sha256((email + password + key.SALT).encode("utf-8")).hexdigest()
         if user.hashed_password == hashed_password:
-            session["user_name"] = email
+            session["email"] = email
             return redirect(url_for("index"))
         else:
             return redirect(url_for("top",status="wrong_password"))
