@@ -106,7 +106,7 @@ def logion():
 
 @app.route("/logout")
 def logout():
-    session.pop("user_name", None)
+    session.pop("email", None)
     return redirect(url_for("top",status="logout"))
     
 
@@ -122,7 +122,7 @@ def resister():
         user = User(email, hashed_password)
         db_session.add(user)
         db_session.commit()
-        session["user_name"] = email
+        session["email"] = email
         return redirect(url_for("index"))
     
 
